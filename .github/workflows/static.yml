@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+
+ 
+    <title>可點擊網格</title>
+
+   <style>
+        * {
+            font-family: Arial; 
+
+        header, footer {
+            background-color: #666666;
+            color: #FFFFFF;
+            text-align: center;
+            padding: 10px;
+        }
+
+        main {
+            padding: 10px 0;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            width: 240px;
+            grid-gap: 10px;
+            margin: auto;
+        }
+
+        .grid-item {
+            display: grid;
+            width: 80px; 
+            height: 80px; 
+            justify-content: center; /* 水平居中對齊 */
+            align-items: center;
+            background-color: #F0F0F0;
+            cursor: pointer;
+        }
+        }
+    </style>
+</head>
+<main>
+  <div class="grid-container">
+    <div id="grid1" class="grid-item"></div>
+    <div id="grid2" class="grid-item"></div>
+    <div id="grid3" class="grid-item"></div>
+    <div id="grid4" class="grid-item"></div>
+    <div id="grid5" class="grid-item"></div>
+    <div id="grid6" class="grid-item"></div>
+    <div id="grid7" class="grid-item"></div>
+    <div id="grid8" class="grid-item"></div>
+    <div id="grid9" class="grid-item"></div>
+    </div>
+</main>
+
+<body>
+
+<header>
+    <h1>可點擊網格</h1>
+</header>
+
+<footer>
+    <b>單元五練習三 (2024.02.02)</b> 
+</footer>
+
+ <script>
+var clickCount = 0;
+var END = 0;
+ 
+    function toggleGridSelection(event) {
+        var grid = event.target; 
+        
+     
+        clickCount = parseInt(clickCount, 10); 
+       
+        if (grid.textContent == '' && END == 0){
+        {
+        switch (clickCount) {
+            case 0:
+
+                grid.textContent = "X";
+                break;
+            case 1:    
+               grid.textContent = "O";
+               clickCount = -1;
+               break;
+        
+        }
+
+        clickCount += 1;
+        }
+    if (
+        (document.getElementById("grid1").textContent!=""
+        && (document.getElementById("grid1").textContent==document.getElementById("grid2").textContent)
+        && (document.getElementById("grid1").textContent==document.getElementById("grid3").textContent))
+        
+        ||  (document.getElementById("grid4").textContent!=""
+        && (document.getElementById("grid4").textContent==document.getElementById("grid5").textContent)
+        && (document.getElementById("grid4").textContent==document.getElementById("grid6").textContent))
+        
+        ||  (document.getElementById("grid7").textContent!=""
+        && (document.getElementById("grid7").textContent==document.getElementById("grid8").textContent)
+        && (document.getElementById("grid7").textContent==document.getElementById("grid9").textContent))
+        
+        ||  (document.getElementById("grid1").textContent!=""
+        && (document.getElementById("grid1").textContent==document.getElementById("grid4").textContent)
+        && (document.getElementById("grid1").textContent==document.getElementById("grid7").textContent))
+        
+        ||  (document.getElementById("grid2").textContent!=""
+        && (document.getElementById("grid2").textContent==document.getElementById("grid5").textContent)
+        && (document.getElementById("grid2").textContent==document.getElementById("grid8").textContent))
+        
+        ||  (document.getElementById("grid3").textContent!=""
+        && (document.getElementById("grid3").textContent==document.getElementById("grid6").textContent)
+        && (document.getElementById("grid3").textContent==document.getElementById("grid9").textContent))
+        
+        ||  (document.getElementById("grid1").textContent!=""
+        && (document.getElementById("grid1").textContent==document.getElementById("grid5").textContent)
+        && (document.getElementById("grid1").textContent==document.getElementById("grid9").textContent))
+        
+        ||  (document.getElementById("grid3").textContent!=""
+        && (document.getElementById("grid3").textContent==document.getElementById("grid5").textContent)
+        && (document.getElementById("grid3").textContent==document.getElementById("grid7").textContent))
+        
+    ){
+       setTimeout(() => alert(grid.textContent + " win"), 10);
+       END = 1;
+       
+     }
+    else if (document.getElementById("grid1").textContent!=""
+      &&document.getElementById("grid2").textContent!=""
+      &&document.getElementById("grid3").textContent!=""
+      &&document.getElementById("grid4").textContent!=""
+      &&document.getElementById("grid5").textContent!=""
+      &&document.getElementById("grid6").textContent!=""
+      &&document.getElementById("grid7").textContent!=""
+      &&document.getElementById("grid8").textContent!=""
+      &&document.getElementById("grid9").textContent!=""
+     )
+       setTimeout(() => alert("No One Win"), 10);
+        
+        grid.setAttribute('data-click-count', clickCount.toString());}
+	}
+
+ document.querySelectorAll('.grid-item').forEach(function (grid) {
+      
+        grid.addEventListener('click', toggleGridSelection);
+    });
+ </script>
+
+</body>
+</html>
